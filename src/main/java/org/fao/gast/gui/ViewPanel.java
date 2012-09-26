@@ -84,7 +84,7 @@ public class ViewPanel extends JPanel
 
 	//---------------------------------------------------------------------------
 
-	public void addForm(Object container, String id, String label, Icon icon, boolean select)
+	public void addForm(Object container, String id, String label, Icon icon)
 	{
 		TreeViewNode node = new TreeViewNode(label);
 		node.setUserData(id);
@@ -95,10 +95,6 @@ public class ViewPanel extends JPanel
 
 		tree.setRootNode(tree.getRootNode());
 		tree.getRootNode().expand(true, 3);
-
-		if (select) {
-			node.select();
-		}
 	}
 
 	//---------------------------------------------------------------------------

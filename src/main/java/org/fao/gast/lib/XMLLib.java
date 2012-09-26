@@ -30,7 +30,6 @@ import java.io.IOException;
 import org.jdom.Document;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 
 //=============================================================================
@@ -65,7 +64,7 @@ public class XMLLib
 	{
 		FileOutputStream os = new FileOutputStream(file);
 
-		XMLOutputter outputter = new XMLOutputter(Format.getPrettyFormat());
+		XMLOutputter outputter = new XMLOutputter();
 
 		try
 		{

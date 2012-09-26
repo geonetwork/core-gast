@@ -81,13 +81,9 @@ public class OraclePanel extends DbmsPanel
 
 	//---------------------------------------------------------------------------
 
-	public boolean matches(String url, boolean isJNDI)
+	public boolean matches(String url)
 	{
-		if (!isJNDI) {
-			return url.startsWith(PREFIX);
-		} else {
-			return false;
-		}
+		return url.startsWith("jdbc:oracle:");
 	}
 
 	//---------------------------------------------------------------------------
@@ -115,9 +111,8 @@ public class OraclePanel extends DbmsPanel
 
 	//---------------------------------------------------------------------------
 
-	public void save(boolean createNew) throws Exception
+	public void save() throws Exception
 	{
-		// checks on input
 		String server= txtServer.getText();
 		String port  = txtPort  .getText();
 		String sid   = txtSid   .getText();
@@ -133,14 +128,10 @@ public class OraclePanel extends DbmsPanel
 
 		String url = PREFIX +"@"+ server +":"+ port +":"+ sid;
 
-		// save input
-		Lib.config.setupDbmsConfig(createNew, false);
 		Lib.config.setDbmsDriver  ("oracle.jdbc.driver.OracleDriver");
 		Lib.config.setDbmsURL     (url);
 		Lib.config.setDbmsUser    (txtUser.getText());
 		Lib.config.setDbmsPassword(txtPass.getText());
-		Lib.config.setDbmsPoolSize("10");
-		Lib.config.setDbmsValidQuery("SELECT 1 FROM DUAL");
 		Lib.config.removeActivator();
 		Lib.config.save();
 	}
@@ -160,7 +151,6 @@ public class OraclePanel extends DbmsPanel
 	//---------------------------------------------------------------------------
 
 	private static final String PREFIX = "jdbc:oracle:thin:";
-
 }
 
 //==============================================================================
