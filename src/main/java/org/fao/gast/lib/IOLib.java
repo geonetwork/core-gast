@@ -30,6 +30,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
+
 import jeeves.utils.BinaryFile;
 
 //=============================================================================
@@ -86,8 +88,13 @@ public class IOLib
 
 	public void save(File file, InputStream is) throws IOException
 	{
-		FileOutputStream os = new FileOutputStream(file);
-		BinaryFile.copy(is, os, false, true);
+		FileOutputStream os = null;
+		try {
+            os = new FileOutputStream(file);
+    		IOUtils.copy(is, os);
+		} finally {
+		    IOUtils.closeQuietly(os);
+		}
 	}
 }
 
